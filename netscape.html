@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>netscape</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css"><!--皮肤样式-->
+<!--[if lt IE 9]><script type="text/javascript" src="js/respond.js"></script><![endif]-->
+</head>
+<body>
+<div class="container">
+    <p class="text-primary" id="browserInfo"></p>
+</div>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+var browser=new Object();
+browser.majorName=navigator.appName;
+browser.userAgent=navigator.userAgent.toLowerCase();
+//browser.appVersion=navigator.appVersion.match(/MSIE ([\d.]+)/)[1] 
+//browser.appVersion=navigator.appVersion;
+browser.majorAPP="";
+browser.majorVer="";
+//var reg_ie=/msie ([\d.]+)/;
+//var reg_ie1=/trident.*rv:([\d.]+)/;
+var reg_ie=/(msie\s|trident.*rv:)([\d.]+)/;
+var reg_ff=/(firefox)\/([\d.]+)/;
+var reg_ch=/(chrome)\/([\d.]+)/;
+var reg_sf=/(safari)\/([\d.]+)/;
+
+var regArr=[["IE",/(msie\s|trident.*rv:)([\d.]+)/],["Safari",/(safari)\/([\d.]+)/],["Firefox",/(firefox)\/([\d.]+)/],["Chrome",/(chrome)\/([\d.]+)/]]
+for(var i=0;i<regArr.length;i++){
+    if(browser.userAgent.match(regArr[i][1])!=null){
+        browser.majorAPP=regArr[i][0]
+        browser.majorVer=browser.userAgent.match(regArr[i][1])[2]
+    }
+}
+
+//browser.majorAPP=browser.userAgent.match(reg_sf)[1]
+//browser.majorVer=browser.userAgent.match(reg_sf)[2]
+//$("#browserInfo").html(browser.majorName+"<br>"+browser.majorAPP+" : "+browser.majorVer+"<br>"+browser.userAgent+"<br>"/*+browser.appVersion*/)
+
+$("#browserInfo").html(browser.majorName+"<br>"+browser.majorAPP+" : "+browser.majorVer+"<br>"+browser.userAgent+"<br>"+navigator.appVersion)
+</script>
+</body>
+</html>

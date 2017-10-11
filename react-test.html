@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>React & Babel</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="js/react.min.js"></script>
+<script type="text/javascript" src="js/react-dom.min.js"></script>
+<script type="text/javascript" src="js/babel.min.js"></script>
+<style type="text/css">
+    body{font-family:Tahoma,Helvetica,Arial,SimSun, sans-serif;}
+	ul{list-style: none}
+	ul li{list-style: none}
+</style>
+</head>
+<body>
+<h1>Hello, React &#8226; Babel !</h1>
+<div id="example"></div>
+<div id="example1"></div>
+<script type="text/babel">
+var HelloMessage = React.createClass({
+  render: function() {
+    return <div><h2>Hello {this.props.name}</h2><p>这里是中文显示效果。</p></div>;
+  }
+});
+
+ReactDOM.render(
+  <HelloMessage name="John Kelvin" />,
+  document.getElementById('example1')
+);
+/*
+var HelloMessage1 = React.createClass({
+  render: function() {
+    return <h1>Hello World！！！</h1>;
+  }
+});
+ 
+ReactDOM.render(
+  <HelloMessage1 />,
+  document.getElementById('example')
+);
+var arr = [
+  <h1>菜鸟教程</h1>,
+  <h2>学的不仅是技术，更是梦想！</h2>
+];
+ReactDOM.render(
+  <div>{arr}</div>,
+  document.getElementById('example')
+);
+var WebSite = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <Name name={this.props.name} />
+        <Link site={this.props.site} />
+      </div>
+    );
+  }
+});
+ 
+var Name = React.createClass({
+  render: function() {
+    return (
+      <h1>{this.props.name}</h1>
+    );
+  }
+});
+ 
+var Link = React.createClass({
+  render: function() {
+    return (
+      <a href={this.props.site}>
+        {this.props.site}
+      </a>
+    );
+  }
+});
+ 
+ReactDOM.render(
+  <WebSite name="菜鸟教程" site="http://www.runoob.com" />,
+  document.getElementById('example')
+);*/
+/*
+class Hello extends React.Component {
+        render(){
+        var list = (length) => {
+          var res = [];
+          for(var i = 0; i < length; i++) {
+            res.push(<h2 key={i}>hello {i} react</h2>)
+          }
+          return res
+        }
+        return (
+          <div>hello {list(this.props.length)}
+          </div>
+        )
+      }
+    }
+var helloData = 5
+    ReactDOM.render(
+      <Hello length = {helloData}/>,
+      document.getElementById('example')
+    );
+*/
+/*
+var Hello = React.createClass({
+  getInitialState: function () {
+    return {
+      opacity: 1.0
+    };
+  },
+
+  componentDidMount: function () {
+    this.timer = setInterval(function () {
+      var opacity = this.state.opacity;
+      opacity -= .05;
+      if (opacity < 0.1) {
+        opacity = 1.0;
+      }
+      this.setState({
+        opacity: opacity
+      });
+    }.bind(this), 300);
+  },
+
+  render: function () {
+    return (
+      <div style={{opacity: this.state.opacity}}>
+        Hello {this.props.name}
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <Hello name="world"/>,
+  document.getElementById('example')
+);*/
+
+/*
+
+let List = function(props){
+    return (
+        <ul>
+            {props.children.map((child, i) => <li id={"id_" + i} key={i}>{child}</li> )}
+        </ul>
+    )
+}
+ 
+let data = [1, 2, 3, 4, 5]
+ReactDOM.render(<List children = {data}  />, document.getElementById('example'));
+
+*/
+
+/*
+let List = function(props){ return ( <ul>{props.children.map((child, i) => <li id={i} key={i}>{child}</li> )}</ul> )}
+let data = ["中国", "美国", "英国", "加拿大", "新西兰"]
+ReactDOM.render(<List children={data} />, document.getElementById('example'));
+*/
+
+var NotesList = React.createClass({
+  render: function() {
+    return (
+      <ul>
+      {
+        React.Children.map(this.props.children, function (child) {
+          return <li>{child}</li>;
+        })
+      }
+      </ul>
+    );
+  }
+});
+
+ReactDOM.render(
+  <NotesList>
+    <span>hello</span>
+    <span>world</span>
+  </NotesList>,
+  document.getElementById('example')
+);
+
+
+</script>
+</body>
+</html>
